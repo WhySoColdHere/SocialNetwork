@@ -1,0 +1,51 @@
+// npm run boot --> Запуск сервера. (Если не установлен nodemon, то: node index.html)
+// Для того, что бы nodemon работал, его надо установить: npm i --save-dev nodemon,
+// и в scripts указать {"boot": "nodemon main.js"}
+
+// const express = require("express")
+// const app = express()
+
+// Так мы будем скачивать файл:
+//
+//    app.get("/", (req, res) => {
+//        res.download("package-lock.json")
+//    })
+
+// Для того, что бы по некоторому пути отображать html, необходимо скачать библиотеку ejs (npm i ejs), тк
+// express нуждается во view engine, что как раз представляет из себя ejs.
+// Далее необходимо указать ejs в качестве view engine:
+// app.set("view engine", "ejs");
+// Кстати, у всех html файлов необходимо поменять расширение на ejs: index.html --> index.ejs
+// Дальше указать в коде:
+//
+// app.get("/", (req, res) => {
+//     res.render(`index`)
+//  })
+//
+// По умолчанию, render ищет файл в директории views.
+
+// Использование переменных из js в ejs:
+//
+// app.get("/", (req, res) => {
+//     res.render(`index`, { text: "5" })
+// })
+//
+// Теперь в ejs мы можем использовать эту переменную: <%= text %>
+// Но если такой переменной не будет найдено, появиться ошибка. Лучше использовать locals:
+// <%= locals.text %>
+// В случае, если переменная не будет найдена, то на страничке просто ничего не измениться.
+// А запись <%= locals.text || "lol" %> позволяет нам работать с текстом lol, если переменной text нет.
+
+// В express роуты читаются последовательно, так что роуты:
+//
+// router.get("/:lol", (req, res) => {
+//    let id = req.params.lol
+//    res.send(`User id is ${id}`)
+// })
+//
+// router.get("/new", (req, res) => {
+//    res.send("New user")
+// })
+//
+// лучше поменять местами, тк если в параметрах :id будет указано new, то до роута new клиент просто не доберется.
+
