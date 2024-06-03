@@ -1,5 +1,7 @@
 const db = require("./database")
 
+// Подумать над закрытием бд.
+
 const addUser = (name, password, email, phone, callback) => {
     const sqlAdd = `INSERT INTO users (name, password, email, phone) VALUES (?, ?, ?, ?)`
     db.run(sqlAdd, [name, password, email, phone], function (err) {
@@ -9,13 +11,12 @@ const addUser = (name, password, email, phone, callback) => {
 
 const getUsers = (callback) => {
     const sqlGet = `SELECT * FROM users`
-    // params передавать необязательно.
     db.all(sqlGet, [], callback)
 }
 
-const getUser = (id, callback) => {
-    const sqlGet = `SELECT * FROM users WHERE id = ?`
-    db.all(sqlGet, [id], callback)
+const getUser = (email, password, callback) => {
+    const sqlGet = `SELECT * FROM users WHERE email = ? AND password = ?`
+    db.all(sqlGet, [email, password], callback)
 }
 
 const updateUser = (id, name, password, email, phone, callback) => {

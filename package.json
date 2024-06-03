@@ -4,7 +4,9 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "boot": "nodemon server.js"
+    "boot": "nodemon server.js",
+    "dev": "webpack --mode development",
+    "build": "webpack --mode production"
   },
   "keywords": [],
   "author": "",
@@ -14,6 +16,7 @@
     "ejs": "^3.1.10",
     "express": "^4.19.2",
     "express-session": "^1.18.0",
+    "file-system": "^2.2.2",
     "sqlite3": "^5.1.7"
   },
   "devDependencies": {
